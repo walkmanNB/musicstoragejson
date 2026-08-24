@@ -3,11 +3,16 @@ name: Auto Update Music Index
 on:
   push:
     paths:
-      - 'music/**' # 只有当你往 music 文件夹塞歌时才触发
+      - 'music/**' # 只有当你往 music 文件夹上传或修改音乐文件时才触发
 
 jobs:
   update-index:
     runs-on: ubuntu-latest
+    
+    # 核心：赋予 GitHub Actions 对仓库的写入权限，解决 403 报错
+    permissions:
+      contents: write
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -28,3 +33,5 @@ jobs:
         with:
           commit_message: "Auto-update library.json via GitHub Actions"
           file_pattern: library.json
+          commit_user_name: "github-actions[bot]"
+          commit_user_email: "41898282+github-actions[bot]@users.noreply.github.com"
