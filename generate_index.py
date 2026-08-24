@@ -17,7 +17,7 @@ for root, dirs, files in os.walk(MUSIC_DIR):
             album = audio.get('album', ['Unknown Album'])[0]
 
             # 构造 GitHub Raw 访问链接
-            raw_url = f"https://raw.githubusercontent.com/你的用户名/你的仓库名/main/{file_path}"
+            raw_url = f"https://raw.githubusercontent.com/walkmanNB/musicstoragejson/main/{file_path}"
 
             library.append({
                 "title": title,
